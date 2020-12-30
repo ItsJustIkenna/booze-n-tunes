@@ -3,3 +3,8 @@
     background-color: #A5643B;
     height: 100px;
 }
+body {
+    background-image: url(./images/background.png);
+    background-color: #673516;
+    
+}
