@@ -1,10 +1,69 @@
 /* Global Header */
 #header {
-    background-color: #A5643B;
-    height: 100px;
+  background-color: #a5643b;
+  height: 100px;
 }
 body {
-    background-image: url(./images/background.png);
-    background-color: #673516;
-    
+  background-image: url(./images/background.png);
+  background-color: #673516;
+}
+.btn {
+  display: block;
+  margin: 0 auto;
+  background-color: black;
+  border: none;
+  text-align: center;
+  border-radius: 23px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+/* Home Page Image Styles */
+
+.img-1 {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.img-1 img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.img-2 {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.img-2 img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.img-3 {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.img-3 img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.img-4 {
+  position: relative;
+  height: 300px;
+  width: 300px;
+}
+
+.img-4 img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
