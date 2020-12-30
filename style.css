@@ -18,6 +18,18 @@ body {
   padding-right: 200px;
 }
 
+.btn-change-playlist {
+  display: block;
+  margin: 0 auto;
+  background-color: black;
+  color: white;
+  border: none;
+  text-align: center;
+  border-radius: 23px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
 /* Home Page Image Styles */
 
 .img-1 {
