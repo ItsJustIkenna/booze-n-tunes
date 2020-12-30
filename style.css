@@ -7,7 +7,7 @@ body {
   background-image: url(./images/background.png);
   background-color: #673516;
 }
-.btn {
+.btn-home {
   display: block;
   margin: 0 auto;
   background-color: black;
