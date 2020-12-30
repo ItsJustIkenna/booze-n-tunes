@@ -1,10 +1,21 @@
 /* Global Header */
 #header {
-    background-color: #A5643B;
-    height: 100px;
+  background-color: #a5643b;
+  height: 100px;
 }
 body {
-    background-image: url(./images/background.png);
-    background-color: #673516;
-    
+  background-image: url(./images/background.png);
+  background-color: #673516;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+.card {
+  padding: 16px;
+  text-align: center;
+  border: 8px;
 }
