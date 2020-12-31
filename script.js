@@ -127,4 +127,22 @@ $(document).ready(function () {
       console.log(response);
     });
   });
+
+  
+
+  $("h1").on("click", function() {
+    console.log("CLICKED")
+    var randomID = Math.floor(Math.random()*happyCocktailIDs.length);
+    var cocktailID =  happyCocktailIDs[randomID];
+    console.log(cocktailID);
+    var cocktailDBQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+cocktailID;
+
+    $.ajax({
+      url: cocktailDBQueryURL,
+      method: "GET",
+    }).then(function(response) {
+      console.log(response)
+    });
+  })
+
 });
