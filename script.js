@@ -25,7 +25,15 @@ $(document).ready(function () {
     "37i9dQZF1DWX83CujKHHOn",
     "37i9dQZF1DWSqBruwoIXkA",
   ];
-  var angryPlaylistIDs = ["6ZiBt4CBkFV3INclWxn8Z0", "15Glcc8LdAloMFFfbODCl7"];
+  var classyPlaylistIDs = [
+    "0QVlJusU4kMLTuEV0RU2K8",
+    "1y2ieBKQblbhS070udm0qz",
+    "1eIg0A4RHNrhJoYDVWTagC",
+    "37i9dQZF1DX4AyFl3yqHeK",
+    "37i9dQZF1DWVleyMkaelTd",
+    "1JMXl388XQ2ItkL3HJXlQr",
+    "55RF7ab1Z4Z8x5q5hgSErG",
+  ];
   var excitedPlaylistIDs = [
     "37i9dQZF1DX6GwdWRQMQpq",
     "37i9dQZF1DX4fpCWaHOned",
@@ -45,9 +53,70 @@ $(document).ready(function () {
     "0vvXsWCC9xrXsKd4FyS8kM",
   ];
 
-  var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
+  var happyCocktailIDs = [
+    "17196",
+    "11288",
+    "11006",
+    "17211",
+    "11403",
+    "11000",
+    "17201",
+    "11007",
+    "17253",
+    "17207",
+    "12308",
+    "12402",
+    "12528",
+  ];
+  var sadCocktailIDs = [
+    "11003",
+    "17251",
+    "11008",
+    "11001",
+    "17827",
+    "17829",
+    "12127",
+  ];
+  var excitedCocktailIDs = [
+    "13731",
+    "11009",
+    "15853",
+    "17181",
+    "13202",
+    "11202",
+    "14956",
+    "11600",
+    "17204",
+    "11007",
+    "17241",
+  ];
+  var chillCocktailIDs = [
+    "13026",
+    "11113",
+    "17205",
+    "178325",
+    "17252",
+    "178343",
+    "13971",
+    "17212",
+    "12107",
+    "12402",
+    "17217",
+    "12988",
+  ];
+  var classyCocktailIDs = [
+    "18170",
+    "17206",
+    "17185",
+    "11005",
+    "11008",
+    "17249",
+    "12127",
+    "17247",
+    "12452",
+  ];
 
-  
+  var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
 
   $("#btn-search").on("click", function () {
     var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=cheese`;
@@ -58,4 +127,31 @@ $(document).ready(function () {
       console.log(response);
     });
   });
+
+  var spotifyPlayer = $("#spotify-playlist");
+
+  $("#change-playlist").on("click", function() {
+    console.log("Changed");
+    var randomID = Math.floor(Math.random()*happyPlaylistIDs.length);
+    var playlistID = happyPlaylistIDs[randomID];
+    var embedURL = "https://open.spotify.com/embed/playlist/"+playlistID;
+    $(spotifyPlayer).attr("src", embedURL);
+
+  })
+
+  $("#change-drink").on("click", function() {
+    console.log("CLICKED")
+    var randomID = Math.floor(Math.random()*happyCocktailIDs.length);
+    var cocktailID =  happyCocktailIDs[randomID];
+    console.log(cocktailID);
+    var cocktailDBQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+cocktailID;
+
+    $.ajax({
+      url: cocktailDBQueryURL,
+      method: "GET",
+    }).then(function(response) {
+      console.log(response)
+    });
+  })
+
 });

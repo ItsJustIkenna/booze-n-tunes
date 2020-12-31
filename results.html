@@ -91,6 +91,7 @@
             <button
               type="button"
               class="btn-change-playlist"
+              id="change-playlist"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
@@ -111,6 +112,7 @@
             <h2 style="color: white; text-align: center">Name</h2>
 
             <iframe
+              id="spotify-playlist"
               src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9u7XXOp0l5L"
               width="300"
               height="380"
@@ -123,6 +125,7 @@
             <button
               type="button"
               class="btn-change-playlist"
+              id="change-mood"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
@@ -148,6 +151,7 @@
               <button
                 type="button"
                 class="btn-change-playlist"
+                id="change-drink"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
@@ -177,29 +181,30 @@
 
             <div
               class="col-sm-5 recipe-block"
-              style="display: table; text-align: left; float: left; display: table;"
+              style="
+                display: table;
+                text-align: left;
+                float: left;
+                display: table;
+              "
             >
-            <div style="display: table-cell; padding-top: 50%;">
-              <h1 style="color: white; text-align: left">
-                Recipe:
-              </h1>
-              <ul>
-                <li style="color: white; text-align: left">Grapes</li>
-                <li style="color: white; text-align: left">Grapes</li>
-                <li style="color: white; text-align: left">Grapes</li>
-                <li style="color: white; text-align: left">Grapes</li>
-                <li style="color: white; text-align: left">Grapes</li>
-              </ul>
-            </div>
+              <div style="display: table-cell; padding-top: 50%">
+                <h1 style="color: white; text-align: left">Recipe:</h1>
+                <ul>
+                  <li style="color: white; text-align: left">Grapes</li>
+                  <li style="color: white; text-align: left">Grapes</li>
+                  <li style="color: white; text-align: left">Grapes</li>
+                  <li style="color: white; text-align: left">Grapes</li>
+                  <li style="color: white; text-align: left">Grapes</li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          <!-- Ingrediants -->
+          <!-- Instructions -->
 
           <div class="col-sm-12">
-            <h1 style="color: white; text-align: left">
-              Ingrediants
-            </h1>
+            <h1 style="color: white; text-align: left">Instructions</h1>
             <p style="color: white; text-align: left">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
               iste quam quod dolor cupiditate numquam. Culpa laudantium quas
@@ -213,4 +218,5 @@
       </div>
     </section>
   </body>
+  <script src="./script.js"></script>
 </html>
