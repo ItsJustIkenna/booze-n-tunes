@@ -128,9 +128,18 @@ $(document).ready(function () {
     });
   });
 
-  
+  var spotifyPlayer = $("#spotify-playlist");
 
-  $("h1").on("click", function() {
+  $("#change-playlist").on("click", function() {
+    console.log("Changed");
+    var randomID = Math.floor(Math.random()*happyPlaylistIDs.length);
+    var playlistID = happyPlaylistIDs[randomID];
+    var embedURL = "https://open.spotify.com/embed/playlist/"+playlistID;
+    $(spotifyPlayer).attr("src", embedURL);
+
+  })
+
+  $("#change-drink").on("click", function() {
     console.log("CLICKED")
     var randomID = Math.floor(Math.random()*happyCocktailIDs.length);
     var cocktailID =  happyCocktailIDs[randomID];
