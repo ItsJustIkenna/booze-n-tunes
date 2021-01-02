@@ -121,6 +121,7 @@ $(document).ready(function () {
 
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
   var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
+  
   function setGif() {
     $.ajax({
       url: queryUrl,
@@ -131,14 +132,11 @@ $(document).ready(function () {
       $('.giphy-block').append(img);
     });
   }
+  
   setGif();
   var spotifyPlayer = $("#spotify-playlist");
-
-  $(".dropdown-item").on("click", function (event) {
-    var userMood = $(event.target).text();
-    console.log(userMood);
-    localStorage.setItem("Mood", userMood);
-  });
+  setPlaylist(mood);
+  setCocktail(mood);
 
   function setPlaylist(mood) {
     if (mood === "Happy") {
@@ -158,7 +156,9 @@ $(document).ready(function () {
     var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
     console.log(randomID);
     $(spotifyPlayer).attr("src", embedURL);
-  }
+
+  };
+  
 
   function setCocktail(mood) {
     if (mood === "Happy") {
@@ -186,25 +186,31 @@ $(document).ready(function () {
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
       $("#drink-instructions").text(info.strInstructions);
+
+    
     });
   }
 
-  $(".dropdown-item").on("click", function (event) {
+  $(".dropdown-item").on("click", function(event) {
     var userMood = $(event.target).text();
     console.log(userMood);
     localStorage.setItem("Mood", userMood);
-    var url = "./results.html";
-    window.location.replace(url);
+    var url = "./results.html"
+    window.location.replace(url)
     setPlaylist(mood);
-  });
+  })
+
 
   $("#change-playlist").on("click", function () {
     console.log("Changed");
     setPlaylist(mood);
   });
 
+
+
   $("#change-drink").on("click", function () {
     console.log("CLICKED");
     setCocktail(mood);
+
   });
 });
