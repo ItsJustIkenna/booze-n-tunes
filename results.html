@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<!DOCTYPE html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -92,19 +92,13 @@
               type="button"
               class="btn-change-playlist"
               id="change-playlist"
-              data-toggle="dropdown"
+
               aria-haspopup="true"
               aria-expanded="false"
             >
               Change Playist
             </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
+
 
             <h1 style="color: white; text-align: center">
               You’re Listening to
@@ -115,14 +109,16 @@
               id="spotify-playlist"
               src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9u7XXOp0l5L"
               width="300"
-              height="380"
+              height="280"
               frameborder="0"
               allowtransparency="true"
               allow="encrypted-media"
               style="margin-left: 15%"
             ></iframe>
 
-            <button
+
+            <div class="menu-block" style="height: 100%;">
+              <button
               type="button"
               class="btn-change-playlist"
               id="change-mood"
@@ -133,12 +129,19 @@
               Change Mood
             </button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
+
+              <a class="dropdown-item" href="#" data="happy">Happy</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
+              <a class="dropdown-item" href="#" data="angry">Sad</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data="sad">Classy</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data="party">Excited</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data="random">Chill</a>
             </div>
+            </div>
+
 
             <h1 style="color: white; text-align: center">Sad</h1>
             <h2 style="color: white; text-align: center">You need an upper</h2>
@@ -158,13 +161,7 @@
               >
                 Change Drink
               </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
-              </div>
+
 
               <h1 style="color: white; text-align: center">
                 Your drink of choice:
@@ -173,7 +170,7 @@
 
               <img
                 src="./images/unnamed.png"
-                style="width: auto; max-height: 350px"
+                style="width: auto; max-height: 340px"
               />
             </div>
 
@@ -200,15 +197,14 @@
               </div>
             </div>
           </div>
-
         </div>
         <div class="col-sm-4">
-          
+
         </div>
 
           <!-- Instructions -->
 
-          <div class="col-sm-8">
+          <div id="instructions" class="col-sm-8">
             <h1 style="color: white; text-align: left">Instructions</h1>
             <p style="color: white; text-align: left">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
