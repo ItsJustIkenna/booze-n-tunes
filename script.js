@@ -118,8 +118,48 @@ $(document).ready(function () {
 
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
 
-  $("#btn-search").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=cheese`;
+  $("#happy").on("click", function () {
+    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=happy`;
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+    });
+  });
+
+  $("#sad").on("click", function () {
+    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=sad`;
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+    });
+  });
+
+  $("#excited").on("click", function () {
+    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=excited`;
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+    });
+  });
+
+  $("#chill").on("click", function () {
+    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=chill`;
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+    });
+  });
+
+  $("#classy").on("click", function () {
+    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=classy`;
     $.ajax({
       url: queryUrl,
       method: "GET",
@@ -130,28 +170,26 @@ $(document).ready(function () {
 
   var spotifyPlayer = $("#spotify-playlist");
 
-  $("#change-playlist").on("click", function() {
+  $("#change-playlist").on("click", function () {
     console.log("Changed");
-    var randomID = Math.floor(Math.random()*happyPlaylistIDs.length);
+    var randomID = Math.floor(Math.random() * happyPlaylistIDs.length);
     var playlistID = happyPlaylistIDs[randomID];
-    var embedURL = "https://open.spotify.com/embed/playlist/"+playlistID;
+    var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
     $(spotifyPlayer).attr("src", embedURL);
+  });
 
-  })
-
-  $("#change-drink").on("click", function() {
-    console.log("CLICKED")
-    var randomID = Math.floor(Math.random()*happyCocktailIDs.length);
-    var cocktailID =  happyCocktailIDs[randomID];
+  $("#change-drink").on("click", function () {
+    console.log("CLICKED");
+    var randomID = Math.floor(Math.random() * happyCocktailIDs.length);
+    var cocktailID = happyCocktailIDs[randomID];
     console.log(cocktailID);
-    var cocktailDBQueryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+cocktailID;
+    var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
 
     $.ajax({
       url: cocktailDBQueryURL,
       method: "GET",
-    }).then(function(response) {
-      console.log(response)
+    }).then(function (response) {
+      console.log(response);
     });
-  })
-
+  });
 });
