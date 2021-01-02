@@ -201,6 +201,16 @@ $(document).ready(function () {
     console.log(cocktailID);
     var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
 
+
+    //Mood List Button Actions
+
+  $(".dropdown-item").on("click", function() {
+    console.log("Your an idiot!")
+    var url = "./results.html"
+    window.location.replace(url)
+  })
+
+
     $.ajax({
       url: cocktailDBQueryURL,
       method: "GET",
