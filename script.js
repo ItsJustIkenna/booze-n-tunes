@@ -116,6 +116,12 @@ $(document).ready(function () {
     "12452",
   ];
 
+  // $(".dropdown-menu").css({
+  //   'padding-left': ($(".btn-mood").width() + 'px'),
+  //   'padding-right': ($(".btn-mood").width() + 'px'),
+  //   // 'width': ($(".dropdown-divider").width() + 'px')
+  // });
+
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
 
   $("#btn-search").on("click", function () {
