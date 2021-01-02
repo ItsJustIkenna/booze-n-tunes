@@ -116,8 +116,10 @@ $(document).ready(function () {
     "12452",
   ];
 
-  var mood = JSON.parse(localStorage.getItem("Mood")) || [];
+
+  var mood = localStorage.getItem("Mood") || [];
   console.log(mood);
+
   // $(".dropdown-menu").css({
   //   'padding-left': ($(".btn-mood").width() + 'px'),
   //   'padding-right': ($(".btn-mood").width() + 'px'),
@@ -179,19 +181,35 @@ $(document).ready(function () {
   var spotifyPlayer = $("#spotify-playlist");
 
 
+
   $(".dropdown-item").on("click", function(event) {
     var userMood = $(event.target).text();
     console.log(userMood);
     localStorage.setItem("Mood", userMood);
   })
 
+  function setPlaylist(mood) {
+    if (mood === "Happy"){
+      var userPlaylists = happyPlaylistIDs;
+    } else if (mood === "Sad") {
+      var userPlaylists = sadPlaylistIDs;
+    } else if (mood === "Party" || mood === "Excited") {
+      var userPlaylists = excitedPlaylistIDs;
+    } else if (mood === "Chill") {
+      var userPlaylists = chillPlaylistIDs;
+    } else if (mood === "Classy") {
+      var userPlaylists = classyPlaylistIDs
+    }
+    console.log("Playlists");
+    var randomID = Math.floor(Math.random() * userPlaylists.length);
+    var playlistID = userPlaylists[randomID];
+    var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
+    $(spotifyPlayer).attr("src", embedURL);
+  };
 
   $("#change-playlist").on("click", function () {
     console.log("Changed");
-    var randomID = Math.floor(Math.random() * happyPlaylistIDs.length);
-    var playlistID = happyPlaylistIDs[randomID];
-    var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
-    $(spotifyPlayer).attr("src", embedURL);
+    setPlaylist(mood);
   });
 
   $("#change-drink").on("click", function () {
@@ -200,6 +218,7 @@ $(document).ready(function () {
     var cocktailID = happyCocktailIDs[randomID];
     console.log(cocktailID);
     var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
+
 
 
     //Mood List Button Actions
