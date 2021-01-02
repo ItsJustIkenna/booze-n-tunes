@@ -7,15 +7,53 @@ body {
   background-image: url(./images/background.png);
   background-color: #673516;
 }
-.btn {
+.btn-mood {
   display: block;
   margin: 0 auto;
   background-color: black;
+  color: white;
   border: none;
   text-align: center;
   border-radius: 23px;
-  padding-left: 200px;
-  padding-right: 200px;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.btn-change-playlist {
+  display: block;
+  margin: 25px;
+  background-color: black;
+  color: white;
+  border: none;
+  text-align: center;
+  border-radius: 23px;
+  padding-left: 15%;
+  padding-right: 15%;
+  font-size: large;
+}
+.drink-block {
+  width: 100%;
+}
+
+button:focus {
+  outline: none;
+}
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.69);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin: auto;
+  width: 55%;
+  margin-left: 2%;
+  margin-top: -5px;
+}
+.dropdown-item {
+  text-align: center;
+  color: white;
+}
+.dropdown-divider {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Home Page Image Styles */
