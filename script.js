@@ -120,12 +120,6 @@ $(document).ready(function () {
   var mood = localStorage.getItem("Mood") || [];
   console.log(mood);
 
-  // $(".dropdown-menu").css({
-  //   'padding-left': ($(".btn-mood").width() + 'px'),
-  //   'padding-right': ($(".btn-mood").width() + 'px'),
-  //   // 'width': ($(".dropdown-divider").width() + 'px')
-  // });
-
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
 
   $("#happy").on("click", function () {
@@ -177,16 +171,10 @@ $(document).ready(function () {
       console.log(response);
     });
   });
-
+  
+  setPlaylist(mood);
+  setCocktail(mood);
   var spotifyPlayer = $("#spotify-playlist");
-
-
-
-  $(".dropdown-item").on("click", function(event) {
-    var userMood = $(event.target).text();
-    console.log(userMood);
-    localStorage.setItem("Mood", userMood);
-  })
 
   function setPlaylist(mood) {
     if (mood === "Happy"){
@@ -204,37 +192,59 @@ $(document).ready(function () {
     var randomID = Math.floor(Math.random() * userPlaylists.length);
     var playlistID = userPlaylists[randomID];
     var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
+    console.log(randomID);
     $(spotifyPlayer).attr("src", embedURL);
   };
-
-  $("#change-playlist").on("click", function () {
-    console.log("Changed");
-    setPlaylist(mood);
-  });
-
-  $("#change-drink").on("click", function () {
-    console.log("CLICKED");
-    var randomID = Math.floor(Math.random() * happyCocktailIDs.length);
-    var cocktailID = happyCocktailIDs[randomID];
-    console.log(cocktailID);
+  
+  function setCocktail(mood) {
+    if (mood === "Happy") {
+      var userCocktails = happyCocktailIDs;
+    } else if (mood === "Sad") {
+      var userCocktails = sadPlaylistIDs;
+    } else if (mood === "Party" || mood === "Excited") {
+      var userCocktails = excitedCocktailIDs;
+    } else if (mood === "Chill") {
+      var userCocktails = chillCocktailIDs;
+    } else if (mood === "Classy") {
+      var userCocktails = classyCocktailIDs;
+    }
+    console.log("Drinks");
+    var randomID = Math.floor(Math.random() * userCocktails.length);
+    var cocktailID = userCocktails[randomID];
     var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
-
-
-
-    //Mood List Button Actions
-
-  $(".dropdown-item").on("click", function() {
-    console.log("Your an idiot!")
-    var url = "./results.html"
-    window.location.replace(url)
-  })
-
 
     $.ajax({
       url: cocktailDBQueryURL,
       method: "GET",
     }).then(function (response) {
       console.log(response);
+      var info = response.drinks[0];
+      $("#drink-name").text(info.strDrink);
+      $("#drink-image").attr("src", info.strDrinkThumb);
+      $("#drink-instructions").text(info.strInstructions);
+    
     });
+  }
+
+  $(".dropdown-item").on("click", function(event) {
+    var userMood = $(event.target).text();
+    console.log(userMood);
+    localStorage.setItem("Mood", userMood);
+    var url = "./results.html"
+    window.location.replace(url)
+    setPlaylist(mood);
+  })
+
+  $("#change-playlist").on("click", function () {
+    console.log("Changed");
+    setPlaylist(mood);
+  });
+
+
+
+  $("#change-drink").on("click", function () {
+    console.log("CLICKED");
+    setCocktail(mood);
+    
   });
 });
