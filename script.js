@@ -118,10 +118,14 @@ $(document).ready(function () {
 
   var mood = localStorage.getItem("Mood") || [];
   console.log(mood);
-
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
   var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
-  
+  var spotifyPlayer = $("#spotify-playlist");
+
+  setPlaylist(mood);
+  setCocktail(mood);
+  setGif(mood);
+
   function setGif() {
     $.ajax({
       url: queryUrl,
@@ -132,11 +136,6 @@ $(document).ready(function () {
       $('.giphy-block').append(img);
     });
   }
-  
-  setGif();
-  var spotifyPlayer = $("#spotify-playlist");
-  setPlaylist(mood);
-  setCocktail(mood);
 
   function setPlaylist(mood) {
     if (mood === "Happy") {
@@ -164,7 +163,7 @@ $(document).ready(function () {
     if (mood === "Happy") {
       var userCocktails = happyCocktailIDs;
     } else if (mood === "Sad") {
-      var userCocktails = sadPlaylistIDs;
+      var userCocktails = sadCocktailIDs;
     } else if (mood === "Party" || mood === "Excited") {
       var userCocktails = excitedCocktailIDs;
     } else if (mood === "Chill") {
@@ -191,13 +190,21 @@ $(document).ready(function () {
     });
   }
 
+  // $(".dropdown-item").on("click", function(event) {
+  //   event.preventDefault();
+  //   var userMood = $(event.target).text();
+  //   console.log(userMood);
+  //   localStorage.setItem("Mood", userMood);
+  //   // var url = "./results.html"
+  //   // window.location.replace(url)
+  //   setPlaylist(mood);
+  // })
+
   $(".dropdown-item").on("click", function(event) {
     var userMood = $(event.target).text();
     console.log(userMood);
     localStorage.setItem("Mood", userMood);
-    var url = "./results.html"
-    window.location.replace(url)
-    setPlaylist(mood);
+    location.reload();
   })
 
 
@@ -206,11 +213,8 @@ $(document).ready(function () {
     setPlaylist(mood);
   });
 
-
-
   $("#change-drink").on("click", function () {
     console.log("CLICKED");
     setCocktail(mood);
-
   });
 });
