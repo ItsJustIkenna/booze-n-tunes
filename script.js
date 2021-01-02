@@ -176,6 +176,13 @@ $(document).ready(function () {
 
   var spotifyPlayer = $("#spotify-playlist");
 
+  $(".dropdown-item").on("click", function(event) {
+    var userMood = $(event.target).text();
+    console.log(userMood);
+    localStorage.setItem("Mood", userMood);
+  })
+
+
   $("#change-playlist").on("click", function () {
     console.log("Changed");
     var randomID = Math.floor(Math.random() * happyPlaylistIDs.length);
