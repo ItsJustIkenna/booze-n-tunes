@@ -135,6 +135,7 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       console.log(response);
+      
     });
   }
 
@@ -146,6 +147,7 @@ $(document).ready(function () {
     var userMood = $(event.target).text();
     console.log(userMood);
     localStorage.setItem("Mood", userMood);
+    setGif();
   })
 
   function setPlaylist(mood) {
