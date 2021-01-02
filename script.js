@@ -117,7 +117,7 @@ $(document).ready(function () {
   ];
 
 
-  var mood = JSON.parse(localStorage.getItem("Mood")) || [];
+  var mood = localStorage.getItem("Mood") || [];
   console.log(mood);
 
   // $(".dropdown-menu").css({
@@ -188,12 +188,28 @@ $(document).ready(function () {
     localStorage.setItem("Mood", userMood);
   })
 
-  $("#change-playlist").on("click", function () {
-    console.log("Changed");
-    var randomID = Math.floor(Math.random() * happyPlaylistIDs.length);
-    var playlistID = happyPlaylistIDs[randomID];
+  function setPlaylist(mood) {
+    if (mood === "Happy"){
+      var userPlaylists = happyPlaylistIDs;
+    } else if (mood === "Sad") {
+      var userPlaylists = sadPlaylistIDs;
+    } else if (mood === "Party" || mood === "Excited") {
+      var userPlaylists = excitedPlaylistIDs;
+    } else if (mood === "Chill") {
+      var userPlaylists = chillPlaylistIDs;
+    } else if (mood === "Classy") {
+      var userPlaylists = classyPlaylistIDs
+    }
+    console.log("Playlists");
+    var randomID = Math.floor(Math.random() * userPlaylists.length);
+    var playlistID = userPlaylists[randomID];
     var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
     $(spotifyPlayer).attr("src", embedURL);
+  };
+
+  $("#change-playlist").on("click", function () {
+    console.log("Changed");
+    setPlaylist(mood);
   });
 
   $("#change-drink").on("click", function () {
