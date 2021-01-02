@@ -52,10 +52,9 @@ button:focus {
 
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  margin: auto;
-  width: 5%;
-  /* opacity: 1; */
-  /* margin-left: 2%; */
+  position: absolute;
+  width: 55%;
+  margin-left: 2%;
   margin-top: -5px;
   
 }
