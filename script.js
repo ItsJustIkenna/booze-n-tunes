@@ -116,6 +116,10 @@ $(document).ready(function () {
     "12452",
   ];
 
+
+  var mood = JSON.parse(localStorage.getItem("Mood")) || [];
+  console.log(mood);
+
   // $(".dropdown-menu").css({
   //   'padding-left': ($(".btn-mood").width() + 'px'),
   //   'padding-right': ($(".btn-mood").width() + 'px'),
@@ -176,6 +180,14 @@ $(document).ready(function () {
 
   var spotifyPlayer = $("#spotify-playlist");
 
+
+
+  $(".dropdown-item").on("click", function(event) {
+    var userMood = $(event.target).text();
+    console.log(userMood);
+    localStorage.setItem("Mood", userMood);
+  })
+
   $("#change-playlist").on("click", function () {
     console.log("Changed");
     var randomID = Math.floor(Math.random() * happyPlaylistIDs.length);
@@ -190,6 +202,17 @@ $(document).ready(function () {
     var cocktailID = happyCocktailIDs[randomID];
     console.log(cocktailID);
     var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
+
+
+
+    //Mood List Button Actions
+
+  $(".dropdown-item").on("click", function() {
+    console.log("Your an idiot!")
+    var url = "./results.html"
+    window.location.replace(url)
+  })
+
 
     $.ajax({
       url: cocktailDBQueryURL,
