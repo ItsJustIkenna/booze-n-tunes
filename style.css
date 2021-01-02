@@ -41,7 +41,7 @@ button:focus {
   background-color: rgba(0, 0, 0, 0.69);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  margin: auto;
+  position: absolute;
   width: 55%;
   margin-left: 2%;
   margin-top: -5px;
