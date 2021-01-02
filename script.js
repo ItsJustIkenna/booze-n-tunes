@@ -116,8 +116,8 @@ $(document).ready(function () {
     "12452",
   ];
 
-  var mood = JSON.parse(localStorage.getItem("Mood")) || [];
-  console.log(mood);
+  var mood = localStorage.getItem("Mood") || [];
+
   // $(".dropdown-menu").css({
   //   'padding-left': ($(".btn-mood").width() + 'px'),
   //   'padding-right': ($(".btn-mood").width() + 'px'),
@@ -126,65 +126,24 @@ $(document).ready(function () {
 
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
 
-  $("#happy").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=happy`;
+  function setGif() {
+    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
     $.ajax({
       url: queryUrl,
       method: "GET",
     }).then(function (response) {
       console.log(response);
     });
-  });
-
-  $("#sad").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=sad`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#excited").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=excited`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#chill").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=chill`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#classy").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=classy`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
+  }
 
   var spotifyPlayer = $("#spotify-playlist");
 
-
-  $(".dropdown-item").on("click", function(event) {
+  $(".dropdown-item").on("click", function (event) {
     var userMood = $(event.target).text();
     console.log(userMood);
     localStorage.setItem("Mood", userMood);
-  })
-
+    setGif();
+  });
 
   $("#change-playlist").on("click", function () {
     console.log("Changed");
