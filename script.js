@@ -116,80 +116,29 @@ $(document).ready(function () {
     "12452",
   ];
 
-
   var mood = localStorage.getItem("Mood") || [];
   console.log(mood);
-
-  // $(".dropdown-menu").css({
-  //   'padding-left': ($(".btn-mood").width() + 'px'),
-  //   'padding-right': ($(".btn-mood").width() + 'px'),
-  //   // 'width': ($(".dropdown-divider").width() + 'px')
-  // });
-
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
-
-  $("#happy").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=happy`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#sad").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=sad`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#excited").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=excited`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#chill").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=chill`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
-  $("#classy").on("click", function () {
-    var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=classy`;
-    $.ajax({
-      url: queryUrl,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
-  });
-
+  var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
   var spotifyPlayer = $("#spotify-playlist");
 
+  setPlaylist(mood);
+  setCocktail(mood);
+  setGif(mood);
 
-
-  $(".dropdown-item").on("click", function(event) {
-    var userMood = $(event.target).text();
-    console.log(userMood);
-    localStorage.setItem("Mood", userMood);
-  })
+  function setGif() {
+    $.ajax({
+      url: queryUrl,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      var img = $('<img>').attr('src', response.data[0].images.downsized.url);
+      $('.giphy-block').append(img);
+    });
+  }
 
   function setPlaylist(mood) {
-    if (mood === "Happy"){
+    if (mood === "Happy") {
       var userPlaylists = happyPlaylistIDs;
     } else if (mood === "Sad") {
       var userPlaylists = sadPlaylistIDs;
@@ -198,14 +147,66 @@ $(document).ready(function () {
     } else if (mood === "Chill") {
       var userPlaylists = chillPlaylistIDs;
     } else if (mood === "Classy") {
-      var userPlaylists = classyPlaylistIDs
+      var userPlaylists = classyPlaylistIDs;
     }
     console.log("Playlists");
     var randomID = Math.floor(Math.random() * userPlaylists.length);
     var playlistID = userPlaylists[randomID];
     var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
+    console.log(randomID);
     $(spotifyPlayer).attr("src", embedURL);
+
   };
+  
+
+  function setCocktail(mood) {
+    if (mood === "Happy") {
+      var userCocktails = happyCocktailIDs;
+    } else if (mood === "Sad") {
+      var userCocktails = sadCocktailIDs;
+    } else if (mood === "Party" || mood === "Excited") {
+      var userCocktails = excitedCocktailIDs;
+    } else if (mood === "Chill") {
+      var userCocktails = chillCocktailIDs;
+    } else if (mood === "Classy") {
+      var userCocktails = classyCocktailIDs;
+    }
+    console.log("Drinks");
+    var randomID = Math.floor(Math.random() * userCocktails.length);
+    var cocktailID = userCocktails[randomID];
+    var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
+
+    $.ajax({
+      url: cocktailDBQueryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      var info = response.drinks[0];
+      $("#drink-name").text(info.strDrink);
+      $("#drink-image").attr("src", info.strDrinkThumb);
+      $("#drink-instructions").text(info.strInstructions);
+
+    
+    });
+  }
+
+  // $(".dropdown-item").on("click", function(event) {
+  //   event.preventDefault();
+  //   var userMood = $(event.target).text();
+  //   console.log(userMood);
+  //   localStorage.setItem("Mood", userMood);
+  //   // var url = "./results.html"
+  //   // window.location.replace(url)
+  //   setPlaylist(mood);
+  // })
+
+  $(".dropdown-item").on("click", function(event) {
+    var userMood = $(event.target).text();
+    console.log(userMood);
+    localStorage.setItem("Mood", userMood);
+    location.reload();
+  })
+
 
   $("#change-playlist").on("click", function () {
     console.log("Changed");
@@ -214,27 +215,6 @@ $(document).ready(function () {
 
   $("#change-drink").on("click", function () {
     console.log("CLICKED");
-    var randomID = Math.floor(Math.random() * happyCocktailIDs.length);
-    var cocktailID = happyCocktailIDs[randomID];
-    console.log(cocktailID);
-    var cocktailDBQueryURL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailID}`;
-
-
-
-    //Mood List Button Actions
-
-  $(".dropdown-item").on("click", function() {
-    console.log("Your an idiot!")
-    var url = "./results.html"
-    window.location.replace(url)
-  })
-
-
-    $.ajax({
-      url: cocktailDBQueryURL,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-    });
+    setCocktail(mood);
   });
 });

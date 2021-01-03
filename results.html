@@ -130,23 +130,23 @@
             </button>
             <div class="dropdown-menu">
 
-              <a class="dropdown-item" href="#" data="happy">Happy</a>
+              <a class="dropdown-item" href="#">Happy</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data="angry">Sad</a>
+              <a class="dropdown-item" href="#">Sad</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data="sad">Classy</a>
+              <a class="dropdown-item" href="#">Classy</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data="party">Excited</a>
+              <a class="dropdown-item" href="#">Excited</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data="random">Chill</a>
+              <a class="dropdown-item" href="#">Chill</a>
             </div>
             </div>
-
-
+            
             <h1 style="color: white; text-align: center">Sad</h1>
             <h2 style="color: white; text-align: center">You need an upper</h2>
           </div>
           <div class="col-sm-8" style="float: left">
+          
             <div
               class="col-sm-4 drink-block"
               style="text-align: center; float: left"
@@ -166,10 +166,11 @@
               <h1 style="color: white; text-align: center">
                 Your drink of choice:
               </h1>
-              <h2 style="color: white; text-align: center">Wine</h2>
+              <h2 id="drink-name"style="color: white; text-align: center"></h2>
 
-              <img
-                src="./images/unnamed.png"
+              <img 
+                id="drink-image"
+                src=""
                 style="width: auto; max-height: 340px"
               />
             </div>
@@ -177,7 +178,7 @@
             <!-- recipe block -->
 
             <div
-              class="col-sm-5 recipe-block"
+              class="col-sm-4 recipe-block"
               style="
                 display: table;
                 text-align: left;
@@ -188,16 +189,34 @@
               <div style="display: table-cell; padding-top: 50%">
                 <h1 style="color: white; text-align: left">Recipe:</h1>
                 <ul>
-                  <li style="color: white; text-align: left">Grapes</li>
-                  <li style="color: white; text-align: left">Grapes</li>
-                  <li style="color: white; text-align: left">Grapes</li>
-                  <li style="color: white; text-align: left">Grapes</li>
-                  <li style="color: white; text-align: left">Grapes</li>
+                  <li id="ingr-1" style="color: white; text-align: left"></li>
+                  <li id="ingr-2" style="color: white; text-align: left"></li>
+                  <li id="ingr-3" style="color: white; text-align: left"></li>
+                  <li id="ingr-4" style="color: white; text-align: left"></li>
+                  <li id="ingr-5" style="color: white; text-align: left"></li>
                 </ul>
               </div>
             </div>
+
+
+            <!-- Giphy block -->
+
+            
+          </div>
+          <div
+              class="col-sm-4 giphy-block"
+              style="
+                display: table;
+                text-align: middle;
+                float: left;
+                display: table;
+              "
+            >
           </div>
         </div>
+
+        <!-- empty div -->
+
         <div class="col-sm-4">
 
         </div>
@@ -206,7 +225,7 @@
 
           <div id="instructions" class="col-sm-8">
             <h1 style="color: white; text-align: left">Instructions</h1>
-            <p style="color: white; text-align: left">
+            <p id="drink-instructions" style="color: white; text-align: left">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
               iste quam quod dolor cupiditate numquam. Culpa laudantium quas
               sapiente hic necessitatibus! Unde consequuntur reiciendis amet
