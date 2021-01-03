@@ -132,7 +132,8 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       console.log(response);
-      var img = $('<img>').attr('src', response.data[0].images.downsized.url);
+      var img = $('<img>').attr('src', response.data[0].images.downsized_medium.url);
+      $(img).attr('style', 'width: 250px;');
       $('.giphy-block').append(img);
     });
   }
@@ -184,6 +185,7 @@ $(document).ready(function () {
       var info = response.drinks[0];
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
+      $("#drink-image").attr("style", 'width: 250px; vertical-align: bottom; display: table-cell;');
       $("#drink-instructions").text(info.strInstructions);
 
     
