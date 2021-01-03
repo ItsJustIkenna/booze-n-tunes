@@ -132,9 +132,12 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       console.log(response);
-      var img = $('<img>').attr('src', response.data[0].images.downsized_medium.url);
-      $(img).attr('style', 'width: 250px;');
-      $('.giphy-block').append(img);
+      var img = $("<img>").attr(
+        "src",
+        response.data[0].images.downsized_medium.url
+      );
+      $(img).attr("style", "width: 250px;");
+      $(".giphy-block").append(img);
     });
   }
 
@@ -156,9 +159,7 @@ $(document).ready(function () {
     var embedURL = `https://open.spotify.com/embed/playlist/${playlistID}`;
     console.log(randomID);
     $(spotifyPlayer).attr("src", embedURL);
-
-  };
-  
+  }
 
   function setCocktail(mood) {
     if (mood === "Happy") {
@@ -183,12 +184,41 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       var info = response.drinks[0];
+      var ingredients = [
+        info.strIngredient1,
+        info.strIngredient2,
+        info.strIngredient3,
+        info.strIngredient4,
+        info.strIngredient5,
+        info.strIngredient6,
+        info.strIngredient7,
+        info.strIngredient8,
+      ];
+      var measurements = [
+        info.strMeasure1,
+        info.strMeasure2,
+        info.strMeasure3,
+        info.strMeasure4,
+        info.strMeasure5,
+        info.strMeasure6,
+        info.strMeasure7,
+        info.strMeasure8,
+      ];
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
-      $("#drink-image").attr("style", 'width: 250px; vertical-align: bottom; display: table-cell;');
       $("#drink-instructions").text(info.strInstructions);
 
-    
+      for (var i = 0; i < ingredients.length; i++) {
+        if (ingredients[i] === null || measurements[i] === null) {
+          return;
+        } else {
+          var newIng = $("<li>").attr("style", "color:white; text-align: left");
+          newIng.text(measurements[i] + " of " + ingredients[i]);
+          $("#ingredients-list").append(newIng);
+        }
+      }
+      console.log(ingredients);
+      console.log(measurements);
     });
   }
 
@@ -202,13 +232,12 @@ $(document).ready(function () {
   //   setPlaylist(mood);
   // })
 
-  $(".dropdown-item").on("click", function(event) {
+  $(".dropdown-item").on("click", function (event) {
     var userMood = $(event.target).text();
     console.log(userMood);
     localStorage.setItem("Mood", userMood);
     location.reload();
-  })
-
+  });
 
   $("#change-playlist").on("click", function () {
     console.log("Changed");
