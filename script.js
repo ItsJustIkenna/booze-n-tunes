@@ -76,6 +76,7 @@ $(document).ready(function () {
     "17827",
     "17829",
     "12127",
+    "13899",
   ];
   var excitedCocktailIDs = [
     "13731",
@@ -89,6 +90,9 @@ $(document).ready(function () {
     "17204",
     "11007",
     "17241",
+    "17060",
+    "15288",
+    "16134",
   ];
   var chillCocktailIDs = [
     "13026",
@@ -116,8 +120,15 @@ $(document).ready(function () {
     "12452",
   ];
 
-  var mood = localStorage.getItem("Mood") || [];
+  var mood = localStorage.getItem("Mood");
+  if (mood === null) {
+    localStorage.setItem("Mood", "Happy");
+  } else {
+    mood = localStorage.getItem("Mood");
+  }
   console.log(mood);
+
+
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
   var randomIdUrl = `https://api.giphy.com/v1/randomid?api_key=${giphyAPIKey}`;
 
@@ -228,14 +239,15 @@ $(document).ready(function () {
       ];
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
+      $("#drink-image").attr("style", "width: 200px");
       $("#drink-instructions").text(info.strInstructions);
-
+      $("li").remove();
       for (var i = 0; i < ingredients.length; i++) {
         if (ingredients[i] === null || measurements[i] === null) {
           return;
         } else {
           var newIng = $("<li>").attr("style", "color:white; text-align: left");
-          newIng.text(measurements[i] + " of " + ingredients[i]);
+          newIng.text(measurements[i] + " " + ingredients[i]);
           $("#ingredients-list").append(newIng);
         }
       }
@@ -243,16 +255,6 @@ $(document).ready(function () {
       console.log(measurements);
     });
   }
-
-  // $(".dropdown-item").on("click", function(event) {
-  //   event.preventDefault();
-  //   var userMood = $(event.target).text();
-  //   console.log(userMood);
-  //   localStorage.setItem("Mood", userMood);
-  //   // var url = "./results.html"
-  //   // window.location.replace(url)
-  //   setPlaylist(mood);
-  // })
 
   $(".dropdown-item").on("click", function (event) {
     var userMood = $(event.target).text();
