@@ -39,12 +39,12 @@ button:focus {
   outline: none;
 }
 
-#change-mood{
-    right: 2px;
-    margin-top: 5px;
-    padding-left: 6px;
-    padding-right: 8px;
-    margin-bottom: 5px;
+#change-mood {
+  right: 2px;
+  margin-top: 5px;
+  padding-left: 6px;
+  padding-right: 8px;
+  margin-bottom: 5px;
 }
 
 .dropdown-menu {
@@ -56,7 +56,6 @@ button:focus {
   width: 55%;
   margin-left: 2%;
   margin-top: -5px;
-  
 }
 .dropdown-item {
   text-align: center;
@@ -64,17 +63,21 @@ button:focus {
 }
 .dropdown-divider {
   width: 100%;
-  color: rgba(255, 255, 255, 0.50);
+  color: rgba(255, 255, 255, 0.5);
 }
- 
-#instructions{
+
+#instructions {
   text-align: justify;
   text-justify: inter-word;
-} 
+}
 
-#spotify-playlist{
+#spotify-playlist {
   padding-left: 30px;
+}
 
+h4 {
+  color: white;
+  text-align: left;
 }
 
 /* Home Page Image Styles */
@@ -126,5 +129,3 @@ button:focus {
   left: 0;
   bottom: 0;
 }
-
-
