@@ -76,6 +76,7 @@ $(document).ready(function () {
     "17827",
     "17829",
     "12127",
+    "13899",
   ];
   var excitedCocktailIDs = [
     "13731",
@@ -89,6 +90,9 @@ $(document).ready(function () {
     "17204",
     "11007",
     "17241",
+    "17060",
+    "15288",
+    "16134",
   ];
   var chillCocktailIDs = [
     "13026",
@@ -116,10 +120,18 @@ $(document).ready(function () {
     "12452",
   ];
 
-  var mood = localStorage.getItem("Mood") || [];
+  var mood = localStorage.getItem("Mood");
+  if (mood === null) {
+    localStorage.setItem("Mood", "Happy");
+  } else {
+    mood = localStorage.getItem("Mood");
+  }
   console.log(mood);
+
+
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
-  var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
+  var randomIdUrl = `https://api.giphy.com/v1/randomid?api_key=${giphyAPIKey}`;
+
   var spotifyPlayer = $("#spotify-playlist");
 
   setPlaylist(mood);
@@ -127,30 +139,38 @@ $(document).ready(function () {
   setGif(mood);
 
   $("#mood-type").text(mood);
-  if (mood === 'Happy') {
+  if (mood === "Happy") {
     $("#mood-message").text("Let's have a drink!");
-  } else if (mood === 'Sad') {
+  } else if (mood === "Sad") {
     $("#mood-message").text("You need an upper");
-  } else if (mood === 'Classy') {
+  } else if (mood === "Classy") {
     $("#mood-message").text("Remember, pinkys up.");
-  } else if (mood === 'Excited') {
+  } else if (mood === "Excited") {
     $("#mood-message").text("Time to Party!");
-  } else if (mood === 'Chill') {
+  } else if (mood === "Chill") {
     $("#mood-message").text("Just sit back and relax.");
   }
 
   function setGif() {
     $.ajax({
-      url: queryUrl,
+      url: randomIdUrl,
       method: "GET",
     }).then(function (response) {
       console.log(response);
-      var img = $("<img>").attr(
-        "src",
-        response.data[0].images.downsized_medium.url
-      );
-      $(img).attr("style", "width: 250px;");
-      $(".giphy-block").append(img);
+      var queryUrl = `https://api.giphy.com/v1/gifs/random?api_key=${giphyAPIKey}&tag=${mood}&random_id=${response.data.random_id}`;
+      $.ajax({
+        url: queryUrl,
+        method: "GET",
+      }).then(function (res) {
+        console.log(res);
+        var img = $("<img>").attr(
+          "src",
+          res.data.images.downsized_medium.url
+        );
+        img.attr("style", "width: 250px;");
+        console.log(img);
+        $(".giphy-block").append(img);
+      });
     });
   }
 
@@ -219,14 +239,15 @@ $(document).ready(function () {
       ];
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
+      $("#drink-image").attr("style", "width: 200px");
       $("#drink-instructions").text(info.strInstructions);
-
+      $("li").remove();
       for (var i = 0; i < ingredients.length; i++) {
         if (ingredients[i] === null || measurements[i] === null) {
           return;
         } else {
           var newIng = $("<li>").attr("style", "color:white; text-align: left");
-          newIng.text(measurements[i] + " of " + ingredients[i]);
+          newIng.text(measurements[i] + " " + ingredients[i]);
           $("#ingredients-list").append(newIng);
         }
       }
@@ -234,16 +255,6 @@ $(document).ready(function () {
       console.log(measurements);
     });
   }
-
-  // $(".dropdown-item").on("click", function(event) {
-  //   event.preventDefault();
-  //   var userMood = $(event.target).text();
-  //   console.log(userMood);
-  //   localStorage.setItem("Mood", userMood);
-  //   // var url = "./results.html"
-  //   // window.location.replace(url)
-  //   setPlaylist(mood);
-  // })
 
   $(".dropdown-item").on("click", function (event) {
     var userMood = $(event.target).text();
