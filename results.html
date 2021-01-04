@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -58,22 +57,23 @@
               padding-left: 20px; ;
             "
           >
-            <a href="./index.html">Booze n' Tunes</a>
+            Booze n' Tunes
+            <p
+              class="about-btn"
+              style="
+                font-family: serif;
+                color: white;
+                padding-right: 2%;
+                font-size: 25px;
+                float: right;
+                display: table-cell;
+                vertical-align: middle;
+              "
+            >
+              About
+            </p>
           </h1>
-          <p
-            class="about-btn"
-            style="
-              font-family: serif;
-              color: white;
-              padding-right: 2%;
-              font-size: 25px;
-              float: right;
-              display: table-cell;
-              vertical-align: middle;
-            "
-          >
-            <a href="./about.html">About</a>
-          </p>
+          
           <!-- //Create about button and align right  -->
         </div>
       </div>
@@ -85,157 +85,151 @@
       <!-- //Create row  -->
       <div class="row">
         <!-- //Create column 12  -->
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-4" style="float: left">
+        <div class="col-lg-12">
+          <div class="col-lg-4" style="float: left">
+
+            <div class="d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn-change-playlist"
+              id="change-playlist"
+
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Change Playist
+            </button>
+          </div>
+
+            <h1 style="color: white; text-align: center">
+              You’re Listening to
+            </h1>
+            <div class="d-flex justify-content-center">
+            <iframe
+              id="spotify-playlist"
+              src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9u7XXOp0l5L"
+              width="300"
+              height="280"
+              frameborder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+              style="margin-left: 15%"
+            ></iframe>
+          </div>
+
+
+          
+          
+            <div class="mood-block" style="height: 100%;">
+              <div class="d-flex justify-content-center">
+              <button
+              type="button"
+              class="btn-change-playlist"
+              id="change-mood"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Change Mood
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Happy</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Sad</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Classy</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Excited</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Chill</a>
+            </div>
+            </div>
+            </div>
+            
+            <h1 id="mood-type" style="color: white; text-align: center"></h1>
+            <h2 id="mood-message" style="color: white; text-align: center"></h2>
+          </div>
+          <div class="col-lg-8 d-flex flex-wrap" style="float: left;">
+          
+            <div
+              class="col-lg-4 drink-block"
+              style="text-align: center; float: left;"
+            >
+            <div class="d-flex justify-content-center">
               <button
                 type="button"
                 class="btn-change-playlist"
-                id="change-playlist"
+                id="change-drink"
+                data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Change Playlist
+                Change Drink
               </button>
+              </div>
 
               <h1 style="color: white; text-align: center">
-                You’re Listening to
+                Your drink of choice:
               </h1>
-
-              <iframe
-                id="spotify-playlist"
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1DX9u7XXOp0l5L"
-                width="300"
-                height="280"
-                frameborder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-                style="margin-left: 15%"
-              ></iframe>
-
-              <div class="menu-block" style="height: 100%">
-                <button
-                  type="button"
-                  class="btn-change-playlist"
-                  id="change-mood"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Change Mood
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Happy</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Sad</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Classy</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Excited</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Chill</a>
-                </div>
-                <h1
-                  id="mood-type"
-                  style="color: white; text-align: center"
-                ></h1>
-                <h2
-                  id="mood-message"
-                  style="color: white; text-align: center"
-                ></h2>
+              <h2 id="drink-name"style="color: white; text-align: center"></h2>
+              <div class="d-flex justify-content-center">
+              <img 
+                id="drink-image"
+                src=""
+                style="width: auto; max-height: 340px"
+              />
               </div>
             </div>
-            <div class="col-sm-8" style="float: left">
-              <div class="row">
-                <div
-                  class="col-sm-4 drink-block"
-                  style="text-align: center; float: left"
-                >
-                  <button
-                    type="button"
-                    class="btn-change-playlist"
-                    id="change-drink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Change Drink
-                  </button>
 
-                  <h1 style="color: white; text-align: center">
-                    Your drink of choice:
-                  </h1>
-                  <h2
-                    id="drink-name"
-                    style="color: white; text-align: center"
-                  ></h2>
+            <!-- recipe block -->
 
-                  <img
-                    id="drink-image"
-                    src=""
-                    style="width: auto; max-height: 340px"
-                  />
-                </div>
-
-                <!-- recipe block -->
-
-                <div
-                  class="col-sm-4 recipe-block"
-                  style="
-                    display: table;
-                    text-align: left;
-                    float: left;
-                    display: table;
-                  "
-                >
-                  <div style="display: table-cell; padding-top: 50%">
-                    <h1 style="color: white; text-align: left">Recipe:</h1>
-                    <ul id="ingredients-list">
-                      <!-- <li id="ingr-1" style="color: white; text-align: left"></li>
-                    <li id="ingr-2" style="color: white; text-align: left"></li>
-                    <li id="ingr-3" style="color: white; text-align: left"></li>
-                    <li id="ingr-4" style="color: white; text-align: left"></li>
-                    <li id="ingr-5" style="color: white; text-align: left"></li> -->
-                    </ul>
-                  </div>
-                  <div
-                    class="col-sm-4 giphy-block"
-                    style="
-                      display: table;
-                      text-align: middle;
-                      float: left;
-                      display: table;
-                    "
-                  ></div>
-                </div>
+            <div
+              class="col-lg-4 recipe-block d-flex align-items-center justify-content-center"
+              style="
+                text-align: left;
+                float: left;
+              "
+            >
+            <div class="d-flex flex-wrap">
+                <h1 style="color: white; text-align: left">Recipe:</h1>
+                <ul id="ingredients-list">
+                  <!-- <li id="ingr-1" style="color: white; text-align: left"></li>
+                  <li id="ingr-2" style="color: white; text-align: left"></li>
+                  <li id="ingr-3" style="color: white; text-align: left"></li>
+                  <li id="ingr-4" style="color: white; text-align: left"></li>
+                  <li id="ingr-5" style="color: white; text-align: left"></li> -->
+                </ul>
               </div>
-              <div class="row">
-                <div id="instructions" class="col-sm-8">
-                  <h1 style="color: white; text-align: left">Instructions</h1>
-                  <p
-                    id="drink-instructions"
-                    style="color: white; text-align: left"
-                  >
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Natus iste quam quod dolor cupiditate numquam. Culpa
-                    laudantium quas sapiente hic necessitatibus! Unde
-                    consequuntur reiciendis amet quisquam odit hic modi
-                    molestias! Lorem, ipsum dolor sit amet consectetur
-                    adipisicing elit. Rem iste magnam tempora ab doloribus ex,
-                    aliquid sed fugiat ut ullam, maxime animi vero? Quas.
-                  </p>
-                </div>
-              </div>
-            </div>
+              
           </div>
 
-          <!-- empty div -->
 
-          <div class="col-sm-4"></div>
+            <!-- Giphy block -->
 
+            
+          <div
+              class="col-lg-4 giphy-block d-flex align-items-center justify-content-center"
+              style="
+                text-align: middle;
+                float: left;
+              ">
+            </div>
+ 
+          </div>
           <!-- Instructions -->
+          <div id="instructions">
+            <h1 style="color: white; text-align: left">Instructions</h1>
+            <p id="drink-instructions" style="color: white; text-align: left">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus
+              iste quam quod dolor cupiditate numquam. Culpa laudantium quas
+              sapiente hic necessitatibus! Unde consequuntur reiciendis amet
+              quisquam odit hic modi molestias! Lorem, ipsum dolor sit amet
+              consectetur adipisicing elit. Rem iste magnam tempora ab doloribus
+              ex, aliquid sed fugiat ut ullam, maxime animi vero? Quas.
+            </p>
+          </div>
         </div>
-      </div>
+
     </section>
   </body>
   <script src="./script.js"></script>
