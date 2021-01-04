@@ -33,12 +33,18 @@ $(document).ready(function () {
     "37i9dQZF1DWVleyMkaelTd",
     "1JMXl388XQ2ItkL3HJXlQr",
     "55RF7ab1Z4Z8x5q5hgSErG",
+    "4oL6DUD5eQEI1lz2ILE9Kp",
+    "7ypcSFIYq7VAE4hSRs2V9o",
   ];
   var excitedPlaylistIDs = [
     "37i9dQZF1DX6GwdWRQMQpq",
     "37i9dQZF1DX4fpCWaHOned",
     "37i9dQZF1DWYBO1MoTDhZI",
     "37i9dQZF1DX2SlyIbbHgFa",
+    "37i9dQZF1DXa2PvUpywmrr",
+    "37i9dQZF1DX4Vd1jJ7X9H8",
+    "37i9dQZF1DXaXB8fQg7xif",
+    "37i9dQZF1DWWXrKtH3fzUd",
   ];
   var chillPlaylistIDs = [
     "37i9dQZF1DX2yvmlOdMYzV",
@@ -67,6 +73,7 @@ $(document).ready(function () {
     "12308",
     "12402",
     "12528",
+    "17186",
   ];
   var sadCocktailIDs = [
     "11003",
@@ -77,6 +84,10 @@ $(document).ready(function () {
     "17829",
     "12127",
     "13899",
+    "11016",
+    "178310",
+    "17250",
+    "17198",
   ];
   var excitedCocktailIDs = [
     "13731",
@@ -107,6 +118,9 @@ $(document).ready(function () {
     "12402",
     "17217",
     "12988",
+    "11112",
+    "17210",
+    "178340"
   ];
   var classyCocktailIDs = [
     "18170",
@@ -118,6 +132,10 @@ $(document).ready(function () {
     "12127",
     "17247",
     "12452",
+    "17840",
+    "17184",
+    "17197",
+    "17255",
   ];
 
   var mood = localStorage.getItem("Mood");
@@ -131,23 +149,22 @@ $(document).ready(function () {
 
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
   var randomIdUrl = `https://api.giphy.com/v1/randomid?api_key=${giphyAPIKey}`;
-
   var spotifyPlayer = $("#spotify-playlist");
 
   setPlaylist(mood);
   setCocktail(mood);
   setGif(mood);
 
-  $("#mood-type").text(mood);
-  if (mood === "Happy") {
+  $("#mood-type").text("Feelin' " + mood);
+  if (mood === 'Happy') {
     $("#mood-message").text("Let's have a drink!");
-  } else if (mood === "Sad") {
-    $("#mood-message").text("You need an upper");
-  } else if (mood === "Classy") {
-    $("#mood-message").text("Remember, pinkys up.");
-  } else if (mood === "Excited") {
+  } else if (mood === 'Sad') {
+    $("#mood-message").text("It's good to cry sometimes");
+  } else if (mood === 'Classy') {
+    $("#mood-message").text("Remember, pinkies up.");
+  } else if (mood === 'Excited') {
     $("#mood-message").text("Time to Party!");
-  } else if (mood === "Chill") {
+  } else if (mood === 'Chill') {
     $("#mood-message").text("Just sit back and relax.");
   }
 
