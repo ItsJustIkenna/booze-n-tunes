@@ -230,6 +230,7 @@ $(document).ready(function () {
       ];
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
+      $("#drink-image").attr("style", "width: 200px");
       $("#drink-instructions").text(info.strInstructions);
       $("li").remove();
       for (var i = 0; i < ingredients.length; i++) {
