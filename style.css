@@ -41,7 +41,9 @@ button:focus {
 
 #change-mood{
     right: 2px;
-    margin-top: 15px;
+    margin-top: 5px;
+    padding-left: 6px;
+    padding-right: 8px;
     margin-bottom: 5px;
 }
 
@@ -71,6 +73,7 @@ button:focus {
 } 
 
 #spotify-playlist{
+  padding-left: 30px;
 
 }
 
