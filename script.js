@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // playlist arrays for each mood
   var happyPlaylistIDs = [
     "37i9dQZF1DX9u7XXOp0l5L",
     "37i9dQZF1DX0UrRvztWcAU",
@@ -58,7 +59,7 @@ $(document).ready(function () {
     "37i9dQZF1DWWQRwui0ExPn",
     "0vvXsWCC9xrXsKd4FyS8kM",
   ];
-
+  // cocktail arrays for each mood
   var happyCocktailIDs = [
     "17196",
     "11288",
@@ -120,7 +121,7 @@ $(document).ready(function () {
     "12988",
     "11112",
     "17210",
-    "178340"
+    "178340",
   ];
   var classyCocktailIDs = [
     "18170",
@@ -137,7 +138,7 @@ $(document).ready(function () {
     "17197",
     "17255",
   ];
-
+  // created local storage key:mood
   var mood = localStorage.getItem("Mood");
   if (mood === null) {
     localStorage.setItem("Mood", "Happy");
@@ -146,28 +147,29 @@ $(document).ready(function () {
   }
   console.log(mood);
 
-
+  //defines api key and random ID key for giphy api call
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
   var randomIdUrl = `https://api.giphy.com/v1/randomid?api_key=${giphyAPIKey}`;
   var spotifyPlayer = $("#spotify-playlist");
-
+  //runs functions to load playlist cocktail and playlist on page load
   setPlaylist(mood);
   setCocktail(mood);
   setGif(mood);
 
+  //adjust mood info depending on user's set mood
   $("#mood-type").text("Feelin' " + mood);
-  if (mood === 'Happy') {
+  if (mood === "Happy") {
     $("#mood-message").text("Let's have a drink!");
-  } else if (mood === 'Sad') {
+  } else if (mood === "Sad") {
     $("#mood-message").text("It's good to cry sometimes");
-  } else if (mood === 'Classy') {
+  } else if (mood === "Classy") {
     $("#mood-message").text("Remember, pinkies up.");
-  } else if (mood === 'Excited') {
+  } else if (mood === "Excited") {
     $("#mood-message").text("Time to Party!");
-  } else if (mood === 'Chill') {
+  } else if (mood === "Chill") {
     $("#mood-message").text("Just sit back and relax.");
   }
-
+  //pulls random gif on user's set mood and displays it on results page
   function setGif() {
     $.ajax({
       url: randomIdUrl,
@@ -180,10 +182,7 @@ $(document).ready(function () {
         method: "GET",
       }).then(function (res) {
         console.log(res);
-        var img = $("<img>").attr(
-          "src",
-          res.data.images.downsized_medium.url
-        );
+        var img = $("<img>").attr("src", res.data.images.downsized_medium.url);
         img.attr("style", "width: 250px;");
         console.log(img);
         $(".giphy-block").append(img);
@@ -191,6 +190,7 @@ $(document).ready(function () {
     });
   }
 
+  //pulls random ID from the relative array and inserts into embedded spotify player
   function setPlaylist(mood) {
     if (mood === "Happy") {
       var userPlaylists = happyPlaylistIDs;
@@ -211,6 +211,7 @@ $(document).ready(function () {
     $(spotifyPlayer).attr("src", embedURL);
   }
 
+  //pulls random ID from the relative cocktail array and adds drink image, name, and instructions to ingredients
   function setCocktail(mood) {
     if (mood === "Happy") {
       var userCocktails = happyCocktailIDs;
@@ -273,6 +274,7 @@ $(document).ready(function () {
     });
   }
 
+  //click function that changes mood in local storage to user choice
   $(".dropdown-item").on("click", function (event) {
     var userMood = $(event.target).text();
     console.log(userMood);
@@ -280,11 +282,12 @@ $(document).ready(function () {
     location.reload();
   });
 
+  //reruns the setplaylist function without reloading the page
   $("#change-playlist").on("click", function () {
     console.log("Changed");
     setPlaylist(mood);
   });
-
+  //reruns the setcocktail function without reloading the page
   $("#change-drink").on("click", function () {
     console.log("CLICKED");
     setCocktail(mood);
