@@ -76,6 +76,7 @@ $(document).ready(function () {
     "17827",
     "17829",
     "12127",
+    "13899",
   ];
   var excitedCocktailIDs = [
     "13731",
@@ -89,6 +90,9 @@ $(document).ready(function () {
     "17204",
     "11007",
     "17241",
+    "17060",
+    "15288",
+    "16134",
   ];
   var chillCocktailIDs = [
     "13026",
@@ -116,8 +120,15 @@ $(document).ready(function () {
     "12452",
   ];
 
-  var mood = localStorage.getItem("Mood") || [];
+  var mood = localStorage.getItem("Mood");
+  if (mood === null) {
+    localStorage.setItem("Mood", "Happy");
+  } else {
+    mood = localStorage.getItem("Mood");
+  }
   console.log(mood);
+
+
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
   var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
   var spotifyPlayer = $("#spotify-playlist");
@@ -246,6 +257,7 @@ $(document).ready(function () {
 
   $("#change-drink").on("click", function () {
     console.log("CLICKED");
+    
     setCocktail(mood);
   });
 });
