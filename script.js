@@ -130,7 +130,8 @@ $(document).ready(function () {
 
 
   var giphyAPIKey = "enKBHKanFHkoiz7Nc7Yu1UeJWgpX2seY";
-  var queryUrl = `https://api.giphy.com/v1/gifs/search?api_key=${giphyAPIKey}&limit=1&q=${mood}`;
+  var randomIdUrl = `https://api.giphy.com/v1/randomid?api_key=${giphyAPIKey}`;
+
   var spotifyPlayer = $("#spotify-playlist");
 
   setPlaylist(mood);
@@ -138,30 +139,38 @@ $(document).ready(function () {
   setGif(mood);
 
   $("#mood-type").text(mood);
-  if (mood === 'Happy') {
+  if (mood === "Happy") {
     $("#mood-message").text("Let's have a drink!");
-  } else if (mood === 'Sad') {
+  } else if (mood === "Sad") {
     $("#mood-message").text("You need an upper");
-  } else if (mood === 'Classy') {
+  } else if (mood === "Classy") {
     $("#mood-message").text("Remember, pinkys up.");
-  } else if (mood === 'Excited') {
+  } else if (mood === "Excited") {
     $("#mood-message").text("Time to Party!");
-  } else if (mood === 'Chill') {
+  } else if (mood === "Chill") {
     $("#mood-message").text("Just sit back and relax.");
   }
 
   function setGif() {
     $.ajax({
-      url: queryUrl,
+      url: randomIdUrl,
       method: "GET",
     }).then(function (response) {
       console.log(response);
-      var img = $("<img>").attr(
-        "src",
-        response.data[0].images.downsized_medium.url
-      );
-      $(img).attr("style", "width: 250px;");
-      $(".giphy-block").append(img);
+      var queryUrl = `https://api.giphy.com/v1/gifs/random?api_key=${giphyAPIKey}&tag=${mood}&random_id=${response.data.random_id}`;
+      $.ajax({
+        url: queryUrl,
+        method: "GET",
+      }).then(function (res) {
+        console.log(res);
+        var img = $("<img>").attr(
+          "src",
+          res.data.images.downsized_medium.url
+        );
+        img.attr("style", "width: 250px;");
+        console.log(img);
+        $(".giphy-block").append(img);
+      });
     });
   }
 
