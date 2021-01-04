@@ -218,13 +218,13 @@ $(document).ready(function () {
       $("#drink-name").text(info.strDrink);
       $("#drink-image").attr("src", info.strDrinkThumb);
       $("#drink-instructions").text(info.strInstructions);
-
+      $("li").remove();
       for (var i = 0; i < ingredients.length; i++) {
         if (ingredients[i] === null || measurements[i] === null) {
           return;
         } else {
           var newIng = $("<li>").attr("style", "color:white; text-align: left");
-          newIng.text(measurements[i] + " of " + ingredients[i]);
+          newIng.text(measurements[i] + " " + ingredients[i]);
           $("#ingredients-list").append(newIng);
         }
       }
@@ -232,16 +232,6 @@ $(document).ready(function () {
       console.log(measurements);
     });
   }
-
-  // $(".dropdown-item").on("click", function(event) {
-  //   event.preventDefault();
-  //   var userMood = $(event.target).text();
-  //   console.log(userMood);
-  //   localStorage.setItem("Mood", userMood);
-  //   // var url = "./results.html"
-  //   // window.location.replace(url)
-  //   setPlaylist(mood);
-  // })
 
   $(".dropdown-item").on("click", function (event) {
     var userMood = $(event.target).text();
@@ -257,7 +247,6 @@ $(document).ready(function () {
 
   $("#change-drink").on("click", function () {
     console.log("CLICKED");
-    
     setCocktail(mood);
   });
 });
