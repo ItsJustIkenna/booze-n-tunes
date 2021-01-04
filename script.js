@@ -126,6 +126,19 @@ $(document).ready(function () {
   setCocktail(mood);
   setGif(mood);
 
+  $("#mood-type").text(mood);
+  if (mood === 'Happy') {
+    $("#mood-message").text("Let's have a drink!");
+  } else if (mood === 'Sad') {
+    $("#mood-message").text("You need an upper");
+  } else if (mood === 'Classy') {
+    $("#mood-message").text("Remember, pinkys up.");
+  } else if (mood === 'Excited') {
+    $("#mood-message").text("Time to Party!");
+  } else if (mood === 'Chill') {
+    $("#mood-message").text("Just sit back and relax.");
+  }
+
   function setGif() {
     $.ajax({
       url: queryUrl,
